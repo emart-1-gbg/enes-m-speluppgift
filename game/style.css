@@ -6,14 +6,22 @@
 }
 
 body {
-    background-color: aqua;
+    background-color: #051e29
+}
+
+#menus {
+    display: none;
+    z-index: 1;
+    font-size: 100px;
+    background-color: rgba(255, 0, 0, 0.189);
 }
 
 #mainCanvas {
+    z-index: -1;
     border: 5px solid black;
     position: absolute;
-    width: 99svw;
-    height: 98svh;
+    width: 95%;
+    height: 95%;
     inset: 50%;
     transform: translate(-50%, -50%);
 }

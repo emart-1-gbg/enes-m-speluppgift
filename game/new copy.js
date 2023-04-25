@@ -15,7 +15,7 @@ window.addEventListener("resize", (e) => {
 
 const menu = document.getElementById("menus")
 const overlay = document.getElementById("overlay")
-overlay.style.width = canvas.width * widthMultiplier + "px"
+overlay.style.width = canvas.width * widthMultiplier + "px" 
 
 let numberOfEnemies = 100
 

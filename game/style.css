@@ -71,3 +71,7 @@ body {
     width: 300px;
     height: 25px;
 }
+
+#overlay .score {
+    order: 2;
+}

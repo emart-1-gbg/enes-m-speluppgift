@@ -83,14 +83,7 @@ function levelLoader(level) {
 
 }
 
-function tempDraw(x, y, w, h) {
-    ctx.beginPath()
-    ctx.strokeStyle = 'orange'
-    ctx.lineWidth = 5
-    ctx.rect(x, y, w, h)
-    ctx.stroke()
-    ctx.closePath()
-}
+
 
 class Controls{
     constructor(up, left, down, right){

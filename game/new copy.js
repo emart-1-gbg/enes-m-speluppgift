@@ -4,7 +4,7 @@ const canvas = document.getElementById("mainCanvas")
 const ctx = canvas.getContext("2d")
 
 const widthMultiplier = 0.98
-const heightMultiplier = 0.85
+const heightMultiplier = 0.86
 canvas.width = window.innerWidth * widthMultiplier
 canvas.height = window.innerHeight * heightMultiplier
 
@@ -15,6 +15,7 @@ window.addEventListener("resize", (e) => {
 
 const menu = document.getElementById("menus")
 const overlay = document.getElementById("overlay")
+overlay.style.width = canvas.width * widthMultiplier + "px"
 
 let numberOfEnemies = 100
 
@@ -26,8 +27,9 @@ window.onload = function() {
 
 function loadMenu() {
     menu.style.display = "block"
+    overlay.style.display = "flex"
     // auto run ------
-    loadGame()
+    //loadGame()
 }
 
 function loadGame() {

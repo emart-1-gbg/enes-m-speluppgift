@@ -28,32 +28,32 @@ body {
 }
 
 #overlay {
+    visibility: hidden;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
     background-color: rgba(255, 228, 196, 0.305);
 
     position: absolute;
-    bottom: 3%;
-    width: 95%;
-    padding: 0 0.5% 0 0.5%;
+    bottom: 1%;
+    padding: 0.5%;
     left: 50%;
     transform: translate(-50%);
 
-    --overlayPadding: 15px;
+    --overlayPadding: 10px;
 }
 
 
 #overlay .playerInfo1 {
     padding-left: var(--overlayPadding);
     text-align: left;
+    order: 1;
 }
 
 #overlay .healthBar1 {
     background-color: rgba(160, 159, 247, 0.516);
     width: 300px;
     height: 25px;
-    padding-top: 30px;
 }
 
 #overlay h2 {
@@ -63,6 +63,7 @@ body {
 #overlay .playerInfo2 {
     padding-right: var(--overlayPadding);
     text-align: right;
+    order: 3;
 }
 
 
@@ -74,4 +75,5 @@ body {
 
 #overlay .score {
     order: 2;
+    text-align: center;
 }

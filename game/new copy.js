@@ -416,8 +416,23 @@ for (let i = 0; i < numberOfEnemies; i++) {
     
 }
 
-function animate() {
+// to make the game run at the same speed no matter refresh rate of display
+const frames_per_second = 60
 
+let interval = Math.floor(1000 / frames_per_second)
+let startTime = performance.now()
+let previousTime = startTime
+
+let currentTime = 0
+let deltaTime = 0
+
+function animate(timestamp) {
+    currentTime = timestamp;
+    deltaTime = currentTime - previousTime;
+  
+    if (deltaTime > interval) {
+        previousTime = currentTime - (deltaTime % interval);
+    }
     ctx.clearRect(0, 0, canvas.width, canvas.height)
 
     player1.draw('blue')

@@ -34,6 +34,7 @@ function loadMenu() {
 
 function loadGame() {
     menu.style.display = "none"
+    overlay.style.visibility = "visible"
 
     prepareLoad(levels[currentLevel])
     animate()

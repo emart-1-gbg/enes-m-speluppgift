@@ -10,24 +10,28 @@
 <body>
 
     <div id="menus">
-        <h1>Game Menu</h1>
-        <label for="num-players">Number of Players:</label>
-        <select id="num-players">
-          <option value="1">1</option>
-          <option value="2">2</option>
-        </select>
-        <button id="start-button" onclick="loadGame()">Start Game</button>
+        <div class="player-picker">
+            <h1> <span>S</span>ans <span>S</span>layer</h1>
+            <div class="break"></div>
+            <label id="label" for="num-players">Number of Players: ${}</label>
+            <div class="break"></div>
+            <button id="start-button" onclick="loadGame()">Start Game</button>
+            <select id="num-players" class="selector">
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+        </div>
     </div>
 
     <div id="overlay">
-        <div class="playerInfo1">
+        <div id="playerInfo1">
             <h2>Player 1</h2>
-            <div class="healthBar1"></div>
+            <div id="healthBar1"></div>
         </div>
 
-        <div class="playerInfo2">
+        <div id="playerInfo2">
             <h2>Player 2</h2>
-            <div class="healthBar2"></div>
+            <div id="healthBar2"></div>
         </div>
 
         <div class="score">

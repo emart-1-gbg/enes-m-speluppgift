@@ -208,7 +208,7 @@ class Projectile {
         this.dx = dx
         this.dy = dy
 
-        this.speed = 10
+        this.speed = 2
 
         this.w = 8
         this.h = this.w
@@ -351,7 +351,6 @@ class Player {
         // Shoot update
         if (this.controls.fire) {
             this.bullets.push(new Projectile(this, this.weaponX, this.weaponY, dx, dy))
-            console.log("FIRE");
         }
     
         //slow down automatically when key up
@@ -422,9 +421,19 @@ class Player {
         ctx.fill()
         ctx.closePath()
 
-        this.bullets.forEach(bullet => {
-            bullet.draw()
-        })
+        // Removes bullet from array if the bullet is outside the canvas, if not calls draw method
+        for (let i = 0; i < this.bullets.length; i++) {
+            let bullet = this.bullets[i]
+            if (bullet.x + bullet.w < 0 ||
+                bullet.x - bullet.w > canvas.width ||
+                bullet.y + bullet.h < 0 ||
+                bullet.y - bullet.h > canvas.height) {
+                this.bullets.splice(i, 1)
+            } else {
+                bullet.draw()
+            }
+            //console.log(this.bullets.length)
+        }
     }
 }
 

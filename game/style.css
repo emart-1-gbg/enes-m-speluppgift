@@ -17,18 +17,17 @@ body {
 }
 
 #menus {
-    display: none;
+    display: block;
     position: absolute;
     z-index: 1;
     font-size: 70px;
     background-color: var(--menubg);
     border-radius: 25px;
     text-align: center;
-
     inset: 10% 5%;
 }
 
-.player-picker span { /* For the capital S in menu */
+.player-picker > h1 > span { /* For the capital S in menu */
     color: var(--accentColor);
 }
 
@@ -83,24 +82,26 @@ button:active {
 }
 
 #mainCanvas {
+    display: none;
     position: absolute;
     left: 50%;
     transform: translate(-50%);
     top: 1%;
     z-index: -1;
     border: 5px solid black;
-    position: absolute;
-    margin: auto;
+    
 
     background-size: 100%;
-    background-image: url(./models/background.png);
+    /* background-image: url(./models/background2.png); */
+    background-image: url(./models/background.jpg);
 }
 
 #overlay {
-    display: flex;
+    display: none;
     justify-content: space-between;
     align-items: flex-end;
     background-color: var(--menubg);
+    width: 100%;
 
     position: absolute;
     bottom: 1%;

@@ -45,16 +45,10 @@ function changeLabel() {
     label.textContent = `Number of Players: ${playerCount}` 
 }
 
-let numberOfEnemies = 2 // ----------------- NUMBER OF ENEMIES ----------------------
+ // ----------------- NUMBER OF ENEMIES ----------------------
 
 // Resets the canvas and overlay size when the browser is resized
-window.addEventListener("resize", (e) => {
-    canvas.width = window.innerWidth * widthMultiplier
-    canvas.height = window.innerHeight * heightMultiplier
 
-    overlay.style.width = canvas.width + "px"
-    overlay.style.height *= heightMultiplier + "px"
-})
 
 // Loads menu as the page loads and when ESC is pressed
 window.onload = function() {
@@ -123,16 +117,20 @@ function prepareLoad(level) {
         console.log("default load");
     }
 
-    Player.instance.forEach(player => {
-        let first = activeLevel.spawn
-        player.X = first.x
-        player.y = first.y
-
-        first.x * 2
-        first.y * 2
-    });
+    Player.instance.forEach(player => { // broken ---------------------------
+        player.x = activeLevel.spawn.x
+        player.y = activeLevel.spawn.y
+    })
 
 }
+
+window.addEventListener("resize", (e) => {
+    canvas.width = window.innerWidth * widthMultiplier
+    canvas.height = window.innerHeight * heightMultiplier
+
+    overlay.style.width = canvas.width + "px"
+    overlay.style.height *= heightMultiplier + "px"
+})
 
 class Controls{
     constructor(up, left, down, right, fire){
@@ -208,13 +206,12 @@ class Projectile {
         this.dx = dx
         this.dy = dy
 
-        this.speed = 2
+        this.speed = 10
 
         this.w = 8
         this.h = this.w
 
-        this.lastShootTime = 0
-        this.fireDelay = 200
+        
     }
 
     update(){
@@ -269,6 +266,11 @@ class Player {
         this.bullets = []
         this.target = null
 
+        this.lastShotTime = 0
+        this.fireDelay = 20
+
+        this.now = Date.now()
+
     }
 
     #setTarget(){
@@ -291,14 +293,15 @@ class Player {
         // finds smallest value in an array
         //let smallestDistance = null
         let smallestDistance = distances.indexOf(Math.min(...distances))
+        distances.splice(0, distances.length, distances[smallestDistance])
 
         // both arrays have properties of players in the same order. the index of smallest distance has the same index as target in the arrays
         return enemyPositions[smallestDistance]
 }
 
     #updatePos(){
-        // this.weaponX = this.x + this.w
-        // this.weaponY = this.y + this.h / 2
+        this.weaponX = this.x + this.w * (2/3)
+        this.weaponY = this.y + this.h / 2
 
         this.target = this.#setTarget()
     }
@@ -325,17 +328,7 @@ class Player {
             this.xSpeed += this.xAccel
         }
 
-        /*
-        let distanceToTarget = Math.sqrt((this.middlePos.x - this.targetPos.x) ** 2 + (this.middlePos.y - this.targetPos.y) ** 2);
-
-        let dx = (this.targetPos.x - this.middlePos.x) / distanceToTarget * this.xSpeed
-        let dy = (this.targetPos.y - this.middlePos.y) / distanceToTarget * this.ySpeed
-        */
-
-        //Find nearest target
-        this.weaponX = this.x + this.w * (2/3)
-        this.weaponY = this.y + this.h / 2
-
+        //Find nearest target ----------------------------------------------
         let distanceToTarget
         let dx
         let dy
@@ -349,8 +342,15 @@ class Player {
         })
 
         // Shoot update
+
         if (this.controls.fire) {
-            this.bullets.push(new Projectile(this, this.weaponX, this.weaponY, dx, dy))
+            this.now = Date.now()
+            console.table(dx, dy, this.now)
+
+            if (this.now - this.lastShotTime >= this.shotDelay) { 
+                this.lastShotTime = this.now;
+                this.bullets.push(new Projectile(this, this.weaponX, this.weaponY, dx, dy))
+            }
         }
     
         //slow down automatically when key up
@@ -563,7 +563,7 @@ class Enemy {
 }
 
     draw(){
-        //this.update()
+        this.update()
 
         // HITBOX
         // ctx.beginPath()

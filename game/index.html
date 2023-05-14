@@ -13,9 +13,9 @@
         <div class="player-picker">
             <h1> <span>S</span>ans <span>S</span>layer</h1>
             <div class="break"></div>
-            <label id="label" for="num-players">Number of Players: ${}</label>
+            <label for="num-players">Number of Players: <span id="nOfPlayers"></span> </label>
             <div class="break"></div>
-            <button id="start-button" onclick="loadGame()">Start Game</button>
+            <button id="start-button">Start Game</button>
             <select id="num-players" class="selector">
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -35,7 +35,7 @@
         </div>
 
         <div class="score">
-            <h2 id="points">Score: <span id="points">0</span></h2>
+            <h2>Alive Enemies: <span id="left-alive">0</span></h2>
             <h3 class="wave">Wave <span id="wave">1</span></h3>
         </div>
     </div>
@@ -43,7 +43,7 @@
     <canvas id = "mainCanvas">
     </canvas>
 
-    <script defer src="new copy.js"></script>
+    <script defer src="final.js"></script>
 
 
 

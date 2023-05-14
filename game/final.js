@@ -37,6 +37,9 @@ button.addEventListener("click", function(){
 function loadGame() {
     canvas.style.display = "block"
     overlay.style.display = "flex"
+    if (selector.value === 2) { // doesnt work
+        document.getElementById("playerInfo2").style.visibility = "visible"
+    }
     main()
 }
 
@@ -293,7 +296,7 @@ function main() {
                     enemy.x + enemy.w > this.x &&
                     enemy.y < this.y + this.h &&
                     enemy.y + enemy.h > this.y) {
-                        this.healthbarW -= 0.5
+                        this.healthbarW -= 0.05
                         return
                 }
             });
@@ -456,8 +459,8 @@ function main() {
             this.y = Math.random() * game.height - this.h
 
             // Math.random() * (max - min) + min
-            this.xSpeed = Math.random() * (9 - 6) + 6
-            this.ySpeed = Math.random() * (9 - 6) + 6
+            this.xSpeed = Math.random() * (9.5 - 6) + 6
+            this.ySpeed = Math.random() * (9.5 - 6) + 6
 
             this.dx
             this.dy

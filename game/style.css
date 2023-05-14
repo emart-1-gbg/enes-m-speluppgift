@@ -120,13 +120,12 @@ button:active {
     width: 40%;
 }
 
-
-
 #overlay h2 {
     padding-bottom: 10px;
 }
 
 #playerInfo2 {
+    visibility: hidden;
     padding-right: var(--overlayPadding);
     text-align: right;
     order: 3;

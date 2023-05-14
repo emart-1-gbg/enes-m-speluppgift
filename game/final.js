@@ -572,25 +572,26 @@ function main() {
     // to make the game run at the same speed no matter refresh rate of display
     const frames_per_second = 60
 
-    let interval = Math.floor(1000 / frames_per_second)
-    let startTime = performance.now()
-    let previousTime = startTime
+    var interval = 1000 / frames_per_second
+    var startTime = performance.now()
+    var previousTime = startTime
 
-    let currentTime = 0
-    let deltaTime = 0
+    var currentTime = 0
+    var deltaTime = 0
 
     function animate(timestamp) {
-        currentTime = timestamp;
-        deltaTime = currentTime - previousTime;
-    
+        var currentTime = timestamp;
+        var deltaTime = currentTime - previousTime;
+  
         if (deltaTime > interval) {
-            previousTime = currentTime - (deltaTime % interval);
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+            game.update()
+            game.draw(ctx)
         }
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
-        game.update()
-        game.draw(ctx)
+    
+        previousTime = currentTime - (deltaTime % interval);
 
         requestAnimationFrame(animate)
     }
-    animate()
+    requestAnimationFrame(animate)
 }

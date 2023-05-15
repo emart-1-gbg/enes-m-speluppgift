@@ -221,6 +221,9 @@ function main() {
             this.healthbarH = 5
             this.healhbarOutlineW = this.healthbarW
 
+            this.hitPoints = 1000
+            this.healthIterval = this.healthbarW / this.hitPoints
+
             this.xSpeed = 0
             this.xAccel = 0.5
             this.ySpeed = 0
@@ -289,6 +292,11 @@ function main() {
 
         }
 
+        #recieveDamage(){
+            this.hitPoints--
+            this.healthbarW = this.healthIterval * this.hitPoints
+        }
+
         #checkForDamage(){
             // check for collision and reduce health
             game.enemies.forEach(enemy => {
@@ -296,7 +304,7 @@ function main() {
                     enemy.x + enemy.w > this.x &&
                     enemy.y < this.y + this.h &&
                     enemy.y + enemy.h > this.y) {
-                        this.healthbarW -= 0.05
+                        this.#recieveDamage()
                         return
                 }
             });
@@ -649,12 +657,12 @@ function main() {
                     enemy.draw(context)
                 })
             } else {
-                context.fillText("Game Over", (this.width / 4) - 100, this.height / 2)
+                context.fillText("Game Over", (this.width / 4), this.height / 2)
                 backgroundMusic.pause()
             }
 
             if(this.win){
-                context.fillText("You Won!", (this.width / 4) - 100, this.height / 2)
+                context.fillText("You Won!", (this.width / 4), this.height / 2)
                 backgroundMusic.pause()
             }   
         }

@@ -693,4 +693,10 @@ function main() {
         requestAnimationFrame(animate)
     }
     requestAnimationFrame(animate)
+
+    window.addEventListener("keydown", (e)=>{
+        if (e.key === "Escape") {
+            location.reload()
+        }
+    })
 }
